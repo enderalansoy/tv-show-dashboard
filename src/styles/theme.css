@@ -1,0 +1,29 @@
+:root {
+  /* Colors */
+  --color-primary: #1c1c1e;
+  --color-secondary: #2c2c2e;
+  --color-accent: #4a3191;
+  --color-text: #ffffff;
+  --color-text-muted: #888;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-background: #121214;
+
+  /* Toast Colors */
+  --toast-success-bg: #d4edda;
+  --toast-success-text: #155724;
+  --toast-error-bg: #f8d7da;
+  --toast-error-text: #721c24;
+
+  /* Font Sizes */
+  --font-size-small: 16px;
+  --font-size-medium: 24px;
+  --font-size-large: 32px;
+
+  /* Margins and Paddings */
+  --margin-small: 8px;
+  --margin-medium: 12px;
+  --margin-large: 16px;
+
+  /* Border Radius */
+  --border-radius: 8px;
+}
