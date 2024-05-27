@@ -2,7 +2,7 @@ import axios from 'axios';
 import { SearchResult, Show } from '../types/show';
 import { useToast } from '../plugins/toast';
 
-const API_BASE_URL = 'http://api.tvmaze.com';
+const API_BASE_URL = 'https://api.tvmaze.com';
 const toast = useToast();
 
 /**
