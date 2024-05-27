@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../views/Home.vue';
 import Details from '../views/Details.vue';
+import Home from '../views/Home.vue';
 
 /**
  * Defining an array of route objects.
@@ -35,6 +35,13 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  scrollBehavior(_to, _from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0 };
+    }
+  },
 });
 
 export default router;
