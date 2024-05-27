@@ -30,6 +30,8 @@ The project follows a modular component structure. Key components include:
 - **DetailHeader**: Header component for the detail view, including a back button and the show's title.
 - **DetailItem**: Displays individual details of a TV show, such as genre, rating, premiered date, and language.
 - **DetailSummary**: Displays the HTML summary of the TV show, sanitized to prevent XSS attacks.
+- **EpisodeList**: Displays list of episodes, ordered by date.
+- **EpisodeItem**: Displays details of the epidsode, including a toggleable summary section.
 - **ToastContainer**: A global toast notification system for user feedback.
 
 ### Views
