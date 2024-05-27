@@ -1,20 +1,20 @@
-import { mount } from "@vue/test-utils";
-import Button from "../../components/Button.vue";
-import { describe, it, expect } from "vitest";
+import { mount } from '@vue/test-utils';
+import BaseButton from '../../components/BaseButton.vue';
+import { describe, it, expect } from 'vitest';
 
-describe("Button.vue", () => {
-  it("renders correctly", () => {
-    const wrapper = mount(Button, {
+describe('BaseButton.vue', () => {
+  it('renders correctly', () => {
+    const wrapper = mount(BaseButton, {
       slots: {
-        default: "Click Me",
+        default: 'Click Me',
       },
     });
-    expect(wrapper.text()).toContain("Click Me");
+    expect(wrapper.text()).toContain('Click Me');
   });
 
-  it("emits click event", async () => {
-    const wrapper = mount(Button);
-    await wrapper.trigger("click");
-    expect(wrapper.emitted()).toHaveProperty("click");
+  it('emits click event', async () => {
+    const wrapper = mount(BaseButton);
+    await wrapper.trigger('click');
+    expect(wrapper.emitted()).toHaveProperty('click');
   });
 });

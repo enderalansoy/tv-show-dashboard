@@ -2,33 +2,56 @@
   <div class="show-list">
     <h2 v-if="title" class="show-list__title">{{ title }}</h2>
     <div class="show-list__wrapper">
-      <Button class="show-list__button" @click="scrollTo(-500)">
+      <BaseButton
+        class="show-list__button"
+        aria-label="Scroll left"
+        @click="scrollTo(-400)"
+      >
         <font-awesome-icon icon="chevron-left" />
-      </Button>
-      <div class="show-list__items" ref="listContainer">
-        <ShowCard v-for="show in shows" :key="show.id" :show="show" class="show-list__item" />
+      </BaseButton>
+      <div ref="listContainer" class="show-list__items" role="list">
+        <ShowCard
+          v-for="show in shows"
+          :key="show.id"
+          :show="show"
+          class="show-list__item"
+        />
       </div>
-      <Button class="show-list__button" @click="scrollTo(500)">
+      <BaseButton
+        class="show-list__button"
+        aria-label="Scroll right"
+        @click="scrollTo(400)"
+      >
         <font-awesome-icon icon="chevron-right" />
-      </Button>
+      </BaseButton>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { PropType, defineComponent, ref } from 'vue';
 import ShowCard from './ShowCard.vue';
-import Button from './Button.vue';
+import BaseButton from './BaseButton.vue';
 import { Show } from '../types/show';
 
 export default defineComponent({
   name: 'ShowList',
-  components: { ShowCard, Button },
+  components: { ShowCard, BaseButton },
   props: {
+    /**
+     * The title of the show list.
+     * @type {string}
+     * @default ''
+     */
     title: {
       type: String as PropType<string>,
       default: '',
     },
+    /**
+     * The array of shows to display.
+     * @type {Show[]}
+     * @required
+     */
     shows: {
       type: Array as PropType<Show[]>,
       required: true,
@@ -37,6 +60,10 @@ export default defineComponent({
   setup() {
     const listContainer = ref<HTMLDivElement | null>(null);
 
+    /**
+     * Scrolls the show list horizontally by a specified value.
+     * @param {number} value - The amount to scroll by, in pixels.
+     */
     const scrollTo = (value: number) => {
       if (listContainer.value) {
         listContainer.value.scrollBy({ left: value, behavior: 'smooth' });
@@ -62,6 +89,10 @@ export default defineComponent({
 .show-list__wrapper {
   display: flex;
   align-items: center;
+  margin-left: calc(-3 * var(--margin-medium));
+  margin-right: calc(-3 * var(--margin-medium));
+  padding-right: var(--margin-medium);
+  padding-left: var(--margin-medium);
 }
 
 .show-list__items {

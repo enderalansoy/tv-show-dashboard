@@ -1,19 +1,27 @@
 <template>
   <div class="show-detail">
-    <Spinner :isLoading="isLoading" />
+    <Spinner :is-loading="isLoading" />
     <div v-if="!isLoading && show">
-      <DetailHeader :title="show.name" @goBack="goBack" />
-      <div class="show-detail__background" :style="{ backgroundImage: `url(${show.image?.original})` }">
+      <DetailHeader :title="show.name" @go-back="goBack" />
+      <div
+        class="show-detail__background"
+        :style="{ backgroundImage: `url(${show.image?.original})` }"
+      >
         <div class="show-detail__overlay"></div>
       </div>
       <div class="show-detail__content">
-        <img :src="show.image?.medium" :alt="show.name" class="show-detail__image" />
+        <img
+          :src="show.image?.medium"
+          :alt="show.name"
+          class="show-detail__image"
+          aria-describedby="show-description"
+        />
         <div class="show-detail__info">
           <DetailItem label="Genre:" :value="show.genres.join(', ')" />
           <DetailItem label="Rating:" :value="show.rating.average" />
           <DetailItem label="Premiered:" :value="show.premiered" />
           <DetailItem label="Language:" :value="show.language" />
-          <DetailSummary :summary="show.summary" />
+          <DetailSummary id="show-description" :summary="show.summary" />
         </div>
       </div>
     </div>
@@ -31,13 +39,38 @@ import { fetchShowById } from '../services/showService';
 import { Show } from '../types/show';
 
 export default defineComponent({
+  name: 'ShowDetail',
   components: { Spinner, DetailHeader, DetailItem, DetailSummary },
   setup() {
+    /**
+     * The route object from Vue Router.
+     * @type {Route}
+     */
     const route = useRoute();
+
+    /**
+     * The router object from Vue Router.
+     * @type {Router}
+     */
     const router = useRouter();
+
+    /**
+     * The show object containing the details of the show.
+     * @type {Ref<Show | null>}
+     */
     const show = ref<Show | null>(null);
+
+    /**
+     * Indicates whether data is currently loading.
+     * @type {Ref<boolean>}
+     */
     const isLoading = ref<boolean>(true);
 
+    /**
+     * Fetches the show details by its ID.
+     * @param {string} id - The ID of the show.
+     * @returns {Promise<void>}
+     */
     const fetchShow = async (id: string) => {
       try {
         show.value = await fetchShowById(id);
@@ -48,6 +81,9 @@ export default defineComponent({
       }
     };
 
+    /**
+     * Navigates back to the previous page.
+     */
     const goBack = () => {
       router.back();
     };

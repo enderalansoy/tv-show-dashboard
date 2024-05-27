@@ -12,8 +12,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import './styles/main.css'
-import './styles/theme.css'
+import './styles/main.css';
+import './styles/theme.css';
 
 export default defineComponent({
   name: 'App',
@@ -27,4 +27,3 @@ export default defineComponent({
   padding: var(--margin-large);
 }
 </style>
-

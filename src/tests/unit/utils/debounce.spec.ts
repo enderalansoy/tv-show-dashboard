@@ -1,10 +1,10 @@
-import { describe, it, expect, vi } from "vitest";
-import { debounce } from "../../../utils/debounce";
+import { describe, it, expect, vi } from 'vitest';
+import { debounce } from '../../../utils/debounce';
 
-describe("debounce", () => {
+describe('debounce', () => {
   vi.useFakeTimers();
 
-  it("debounces a function call", () => {
+  it('debounces a function call', () => {
     const func = vi.fn();
     const debouncedFunc = debounce(func, 200);
 
@@ -19,7 +19,7 @@ describe("debounce", () => {
     expect(func).toHaveBeenCalledTimes(1);
   });
 
-  it("passes arguments to the debounced function", () => {
+  it('passes arguments to the debounced function', () => {
     const func = vi.fn();
     const debouncedFunc = debounce(func, 200);
 
@@ -29,7 +29,7 @@ describe("debounce", () => {
     expect(func).toHaveBeenCalledWith(1, 2, 3);
   });
 
-  it("resets the timeout if called again within the wait time", () => {
+  it('resets the timeout if called again within the wait time', () => {
     const func = vi.fn();
     const debouncedFunc = debounce(func, 200);
 

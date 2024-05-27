@@ -1,32 +1,52 @@
-import axios from "axios";
-import { SearchResult, Show } from "../types/show";
-import { useToast } from "../plugins/toast";
+import axios from 'axios';
+import { SearchResult, Show } from '../types/show';
+import { useToast } from '../plugins/toast';
 
-const API_BASE_URL = "http://api.tvmaze.com";
+const API_BASE_URL = 'http://api.tvmaze.com';
 const toast = useToast();
 
+/**
+ * Fetches a list of shows from the TV Maze API.
+ *
+ * @returns A promise that resolves to an array of Show objects.
+ * @throws An error if the request fails.
+ */
 export const fetchShows = async (): Promise<Show[]> => {
   try {
     const response = await axios.get<Show[]>(`${API_BASE_URL}/shows`);
-    toast.show("Shows loaded successfully!", "success");
+    toast.show('Shows loaded successfully!', 'success');
     return response.data;
   } catch (error) {
-    toast.show("Failed to fetch shows", "error");
-    throw new Error("Failed to fetch shows");
+    toast.show('Failed to fetch shows', 'error');
+    throw new Error('Failed to fetch shows');
   }
 };
 
+/**
+ * Fetches a single show by its ID from the TV Maze API.
+ *
+ * @param id - The ID of the show to fetch.
+ * @returns A promise that resolves to a Show object.
+ * @throws An error if the request fails.
+ */
 export const fetchShowById = async (id: string): Promise<Show> => {
   try {
     const response = await axios.get<Show>(`${API_BASE_URL}/shows/${id}`);
-    toast.show("Show loaded successfully!", "success");
+    toast.show('Show loaded successfully!', 'success');
     return response.data;
   } catch (error) {
-    toast.show(`Failed to fetch show with id ${id}`, "error");
+    toast.show(`Failed to fetch show with id ${id}`, 'error');
     throw new Error(`Failed to fetch show with id ${id}`);
   }
 };
 
+/**
+ * Searches for shows on the TV Maze API based on a query.
+ *
+ * @param query - The search query.
+ * @returns A promise that resolves to an array of SearchResult objects.
+ * @throws An error if the request fails.
+ */
 export const searchShows = async (query: string): Promise<SearchResult[]> => {
   try {
     const response = await axios.get<SearchResult[]>(
@@ -37,10 +57,10 @@ export const searchShows = async (query: string): Promise<SearchResult[]> => {
         },
       }
     );
-    toast.show("Search results loaded successfully!", "success");
+    toast.show('Search results loaded successfully!', 'success');
     return response.data;
   } catch (error) {
-    toast.show(`Failed to search for shows with query "${query}"`, "error");
+    toast.show(`Failed to search for shows with query "${query}"`, 'error');
     throw new Error(`Failed to search for shows with query "${query}"`);
   }
 };

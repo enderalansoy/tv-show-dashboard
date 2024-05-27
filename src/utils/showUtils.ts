@@ -1,12 +1,12 @@
-import { Show } from "../types/show";
+import { Show } from '../types/show';
 
 export const categorizeAndSortShows = (
   shows: Show[]
 ): Record<string, Show[]> => {
   const showsByGenre = new Map<string, Show[]>();
 
-  shows.forEach((show) => {
-    show.genres.forEach((genre) => {
+  shows.forEach(show => {
+    show.genres.forEach(genre => {
       const genreShows = showsByGenre.get(genre) || [];
       genreShows.push(show);
       showsByGenre.set(genre, genreShows);

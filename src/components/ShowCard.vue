@@ -1,8 +1,14 @@
 <template>
   <div class="show-card">
     <router-link :to="`/show/${show.id}`" class="show-card__link">
-      <img :src="show.image?.medium" :alt="show.name" class="show-card__image" />
-      <div class="show-card__rating">{{ show.rating.average || '?' }}</div>
+      <img
+        :src="show.image?.medium"
+        :alt="show.name"
+        class="show-card__image"
+      />
+      <div class="show-card__rating" aria-label="Rating">
+        {{ show.rating.average || '?' }}
+      </div>
     </router-link>
   </div>
 </template>
@@ -14,6 +20,11 @@ import { Show } from '../types/show';
 export default defineComponent({
   name: 'ShowCard',
   props: {
+    /**
+     * The show object containing details about the show.
+     * @type {Show}
+     * @required
+     */
     show: {
       type: Object as PropType<Show>,
       required: true,

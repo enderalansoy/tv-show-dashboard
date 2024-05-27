@@ -7,6 +7,7 @@
   --color-text-muted: #888;
   --color-shadow: rgba(0, 0, 0, 0.1);
   --color-background: #121214;
+  --color-black: #000000;
 
   /* Toast Colors */
   --toast-success-bg: #d4edda;

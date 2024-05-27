@@ -1,7 +1,14 @@
 <template>
-  <div class="toast-container">
-    <div v-for="toast in toasts" :key="toast.id"
-      :class="['toast-container__toast', `toast-container__toast--${toast.type}`]">
+  <div class="toast-container" role="alert" aria-live="assertive">
+    <div
+      v-for="toast in toasts"
+      :key="toast.id"
+      :class="[
+        'toast-container__toast',
+        `toast-container__toast--${toast.type}`,
+      ]"
+      role="alert"
+    >
       {{ toast.message }}
     </div>
   </div>
@@ -14,6 +21,10 @@ import { toastState } from '../plugins/toast';
 export default defineComponent({
   name: 'ToastContainer',
   setup() {
+    /**
+     * The array of toast messages.
+     * @type {Array<{ id: string, type: string, message: string }>}
+     */
     const toasts = toastState.messages;
     return { toasts };
   },

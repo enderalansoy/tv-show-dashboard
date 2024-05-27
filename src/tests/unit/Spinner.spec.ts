@@ -1,9 +1,9 @@
-import { mount } from "@vue/test-utils";
-import Spinner from "../../components/Spinner.vue";
-import { describe, it, expect } from "vitest";
+import { mount } from '@vue/test-utils';
+import Spinner from '../../components/Spinner.vue';
+import { describe, it, expect } from 'vitest';
 
-describe("Spinner.vue", () => {
-  it("is visible when isLoading is true", () => {
+describe('Spinner.vue', () => {
+  it('is visible when isLoading is true', () => {
     const wrapper = mount(Spinner, {
       props: {
         isLoading: true,
@@ -12,7 +12,7 @@ describe("Spinner.vue", () => {
     expect(wrapper.isVisible()).toBe(true);
   });
 
-  it("is not visible when isLoading is false", () => {
+  it('is not visible when isLoading is false', () => {
     const wrapper = mount(Spinner, {
       props: {
         isLoading: false,

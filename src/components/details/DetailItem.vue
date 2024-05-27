@@ -11,15 +11,25 @@ import { defineComponent, PropType } from 'vue';
 export default defineComponent({
   name: 'DetailItem',
   props: {
+    /**
+     * The label for the detail item.
+     * @type {string}
+     * @required
+     */
     label: {
       type: String as PropType<string>,
-      required: true
+      required: true,
     },
+    /**
+     * The value of the detail item.
+     * @type {string | number}
+     * @required
+     */
     value: {
       type: [String, Number] as PropType<string | number>,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 });
 </script>
 

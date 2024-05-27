@@ -1,26 +1,36 @@
 <template>
   <div class="show-detail-header">
-    <Button class="show-detail-header__back-button" @click="$emit('goBack')">
+    <BaseButton
+      class="show-detail-header__back-button"
+      aria-label="Go back"
+      @click="$emit('goBack')"
+    >
       <font-awesome-icon icon="arrow-left" />
-    </Button>
+    </BaseButton>
     <h1 class="show-detail-header__title">{{ title }}</h1>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import Button from '../../components/Button.vue';
+import BaseButton from '../BaseButton.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 export default defineComponent({
   name: 'DetailHeader',
-  components: { Button, FontAwesomeIcon },
+  components: { BaseButton, FontAwesomeIcon },
   props: {
+    /**
+     * The title of the detail view.
+     * @type {string}
+     * @required
+     */
     title: {
       type: String as PropType<string>,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
+  emits: ['goBack'],
 });
 </script>
 

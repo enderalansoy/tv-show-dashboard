@@ -1,5 +1,5 @@
 <template>
-  <div class="spinner" v-if="isLoading">
+  <div v-if="isLoading" class="spinner" aria-live="polite" role="status">
     <div class="spinner__circle"></div>
   </div>
 </template>
@@ -10,6 +10,11 @@ import { defineComponent, PropType } from 'vue';
 export default defineComponent({
   name: 'Spinner',
   props: {
+    /**
+     * Indicates whether the spinner is loading.
+     * @type {boolean}
+     * @required
+     */
     isLoading: {
       type: Boolean as PropType<boolean>,
       required: true,
