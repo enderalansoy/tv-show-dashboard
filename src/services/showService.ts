@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { SearchResult, Show } from '../types/show';
 import { useToast } from '../plugins/toast';
+import { Episode } from '../types/episode';
 
 const API_BASE_URL = 'https://api.tvmaze.com';
 const toast = useToast();
@@ -36,11 +37,9 @@ export const fetchShows = async (
 };
 
 /**
- * Fetches a single show by its ID from the TV Maze API.
- *
- * @param id - The ID of the show to fetch.
- * @returns A promise that resolves to a Show object.
- * @throws An error if the request fails.
+ * Fetches a specific TV show by its ID from the TVMaze API.
+ * @param {string} id - The ID of the show.
+ * @returns {Promise<Show>} - A promise that resolves to the show details.
  */
 export const fetchShowById = async (id: string): Promise<Show> => {
   try {
@@ -50,6 +49,24 @@ export const fetchShowById = async (id: string): Promise<Show> => {
   } catch (error) {
     toast.show(`Failed to fetch show with id ${id}`, 'error');
     throw new Error(`Failed to fetch show with id ${id}`);
+  }
+};
+
+/**
+ * Fetches episodes of a specific TV show by its ID from the TVMaze API.
+ * @param {string} showId - The ID of the show.
+ * @returns {Promise<Episode[]>} - A promise that resolves to an array of episodes.
+ */
+export const fetchEpisodes = async (showId: string): Promise<Episode[]> => {
+  try {
+    const response = await axios.get<Episode[]>(
+      `${API_BASE_URL}/shows/${showId}/episodes`
+    );
+    toast.show('Episodes loaded successfully!', 'success');
+    return response.data;
+  } catch (error) {
+    toast.show(`Failed to fetch episodes for show with id ${showId}`, 'error');
+    throw new Error(`Failed to fetch episodes for show with id ${showId}`);
   }
 };
 

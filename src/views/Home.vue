@@ -38,40 +38,11 @@ export default defineComponent({
   name: 'TVShowDashboard',
   components: { TextField, Spinner, ShowList },
   setup() {
-    /**
-     * Array of genres for TV shows.
-     * @type {Ref<string[]>}
-     */
     const genres = ref<string[]>([]);
-
-    /**
-     * Object containing shows categorized by genre.
-     * @type {Ref<Record<string, Show[]>>}
-     */
     const showsByGenre = ref<Record<string, Show[]>>({});
-
-    /**
-     * The search query entered by the user.
-     * @type {Ref<string>}
-     */
     const searchQuery = ref<string>('');
-
-    /**
-     * Array of shows matching the search query.
-     * @type {Ref<Show[]>}
-     */
     const searchResults = ref<Show[]>([]);
-
-    /**
-     * Indicates whether data is currently loading.
-     * @type {Ref<boolean>}
-     */
     const isLoading = ref<boolean>(true);
-
-    /**
-     * Indicates whether the user is currently searching.
-     * @type {Ref<boolean>}
-     */
     const isSearching = ref<boolean>(false);
 
     /**

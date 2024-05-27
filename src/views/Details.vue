@@ -1,6 +1,6 @@
 <template>
   <div class="show-detail">
-    <Spinner :is-loading="isLoading" />
+    <Spinner :is-loading="isLoading || isLoadingEpisodes" />
     <div v-if="!isLoading && show">
       <DetailHeader :title="show.name" @go-back="goBack" />
       <div
@@ -24,6 +24,7 @@
           <DetailSummary id="show-description" :summary="show.summary" />
         </div>
       </div>
+      <EpisodeList v-if="episodes.length" :episodes="episodes" />
     </div>
   </div>
 </template>
@@ -35,42 +36,22 @@ import Spinner from '../components/Spinner.vue';
 import DetailHeader from '../components/details/DetailHeader.vue';
 import DetailItem from '../components/details/DetailItem.vue';
 import DetailSummary from '../components/details/DetailSummary.vue';
-import { fetchShowById } from '../services/showService';
+import EpisodeList from '../components/details/EpisodeList.vue';
+import { fetchShowById, fetchEpisodes } from '../services/showService';
 import { Show } from '../types/show';
+import { Episode } from '../types/episode';
 
 export default defineComponent({
   name: 'ShowDetail',
-  components: { Spinner, DetailHeader, DetailItem, DetailSummary },
+  components: { Spinner, DetailHeader, DetailItem, DetailSummary, EpisodeList },
   setup() {
-    /**
-     * The route object from Vue Router.
-     * @type {Route}
-     */
     const route = useRoute();
-
-    /**
-     * The router object from Vue Router.
-     * @type {Router}
-     */
     const router = useRouter();
-
-    /**
-     * The show object containing the details of the show.
-     * @type {Ref<Show | null>}
-     */
     const show = ref<Show | null>(null);
-
-    /**
-     * Indicates whether data is currently loading.
-     * @type {Ref<boolean>}
-     */
+    const episodes = ref<Episode[]>([]);
     const isLoading = ref<boolean>(true);
+    const isLoadingEpisodes = ref<boolean>(true);
 
-    /**
-     * Fetches the show details by its ID.
-     * @param {string} id - The ID of the show.
-     * @returns {Promise<void>}
-     */
     const fetchShow = async (id: string) => {
       try {
         show.value = await fetchShowById(id);
@@ -81,9 +62,16 @@ export default defineComponent({
       }
     };
 
-    /**
-     * Navigates back to the previous page.
-     */
+    const fetchShowEpisodes = async (id: string) => {
+      try {
+        episodes.value = await fetchEpisodes(id);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        isLoadingEpisodes.value = false;
+      }
+    };
+
     const goBack = () => {
       router.back();
     };
@@ -91,9 +79,10 @@ export default defineComponent({
     onMounted(() => {
       const id = route.params.id as string;
       fetchShow(id);
+      fetchShowEpisodes(id);
     });
 
-    return { show, isLoading, goBack };
+    return { show, episodes, isLoading, isLoadingEpisodes, goBack };
   },
 });
 </script>
