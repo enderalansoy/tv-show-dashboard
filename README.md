@@ -32,6 +32,20 @@ The project follows a modular component structure. Key components include:
 - **DetailSummary**: Displays the HTML summary of the TV show, sanitized to prevent XSS attacks.
 - **ToastContainer**: A global toast notification system for user feedback.
 
+### Views
+
+Above components and higher order components are used to display the two main views:
+
+- **Home**: The dashboard homepage which shows lists of shows based on their genres.
+- **Details**: A details page for each show that shows more information about the specifed show.
+
+### Routes
+
+- **Home**: `/`
+- **Show Details**: `/show/:id`
+
+
+
 ### State Management
 
 State management is handled using the Vue Composition API. Reactive references (`ref`) are used to manage component state, and the `watch` function is used to reactively handle search input changes.
