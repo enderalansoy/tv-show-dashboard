@@ -4,6 +4,10 @@
 
 This project is a TV Show Dashboard built with Vue.js, Vite, TypeScript and the TVMaze API. It allows users to search for TV shows, view detailed information about each show, and browse shows by genre. The application also includes a global toast notification system for user feedback.
 
+## Demo
+
+Demo of the app is available at https://tv-show-dashboard.vercel.app/
+
 ## Architectural Decisions
 
 ### Framework and Libraries
