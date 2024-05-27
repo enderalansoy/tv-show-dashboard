@@ -9,7 +9,7 @@
         {{ episode.name }}
       </h3>
 
-      <BaseButton @click="toggleSummary">
+      <BaseButton class="episode-item__toggle" @click="toggleSummary">
         {{ isSummaryVisible ? 'Hide Summary' : 'Show Summary' }}
       </BaseButton>
     </div>
