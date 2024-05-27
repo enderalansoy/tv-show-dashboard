@@ -38,8 +38,10 @@ export default defineComponent({
 .show-detail-header {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   margin-bottom: var(--margin-medium);
+  position: relative;
+  padding: 0 var(--margin-large);
 }
 
 .show-detail-header__back-button {
@@ -49,6 +51,8 @@ export default defineComponent({
   cursor: pointer;
   font-size: var(--font-size-large);
   transition: color var(--transition-duration);
+  position: absolute;
+  left: var(--margin-medium);
 }
 
 .show-detail-header__back-button:hover {
@@ -57,6 +61,7 @@ export default defineComponent({
 
 .show-detail-header__title {
   font-size: var(--font-size-large);
-  margin-left: var(--margin-medium);
+  max-width: 80%;
+  text-align: center;
 }
 </style>

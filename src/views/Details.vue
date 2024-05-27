@@ -160,14 +160,5 @@ export default defineComponent({
   .show-detail__info {
     max-width: 100%;
   }
-
-  .show-detail-header {
-    justify-content: center;
-  }
-
-  .show-detail-header__back-button {
-    position: absolute;
-    left: var(--margin-medium);
-  }
 }
 </style>
